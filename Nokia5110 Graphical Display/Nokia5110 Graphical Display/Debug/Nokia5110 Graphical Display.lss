@@ -1,0 +1,406 @@
+
+Nokia5110 Graphical Display.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000210  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000001f8  00800060  00000210  000002a4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  00800258  00800258  0000049c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000049c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000004cc  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000b8  00000000  00000000  00000508  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001393  00000000  00000000  000005c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000919  00000000  00000000  00001953  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000005a3  00000000  00000000  0000226c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001c8  00000000  00000000  00002810  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000059d  00000000  00000000  000029d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000064a  00000000  00000000  00002f75  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000088  00000000  00000000  000035bf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	12 e0       	ldi	r17, 0x02	; 2
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 e1       	ldi	r30, 0x10	; 16
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a8 35       	cpi	r26, 0x58	; 88
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	22 e0       	ldi	r18, 0x02	; 2
+  78:	a8 e5       	ldi	r26, 0x58	; 88
+  7a:	b2 e0       	ldi	r27, 0x02	; 2
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	aa 35       	cpi	r26, 0x5A	; 90
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 06 01 	jmp	0x20c	; 0x20c <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+NokiaDisplay Nlcd;
+Spi spi;
+
+int main()
+{
+	spi.MasterInit();
+  92:	88 e5       	ldi	r24, 0x58	; 88
+  94:	92 e0       	ldi	r25, 0x02	; 2
+  96:	0e 94 f9 00 	call	0x1f2	; 0x1f2 <_ZN3Spi10MasterInitEv>
+	Nlcd.Init();
+  9a:	89 e5       	ldi	r24, 0x59	; 89
+  9c:	92 e0       	ldi	r25, 0x02	; 2
+  9e:	0e 94 84 00 	call	0x108	; 0x108 <_ZN12NokiaDisplay4InitEv>
+	Nlcd.Clear();
+  a2:	89 e5       	ldi	r24, 0x59	; 89
+  a4:	92 e0       	ldi	r25, 0x02	; 2
+  a6:	0e 94 b3 00 	call	0x166	; 0x166 <_ZN12NokiaDisplay5ClearEv>
+	Nlcd.SetXy(0x40,0x80);
+  aa:	40 e8       	ldi	r20, 0x80	; 128
+  ac:	60 e4       	ldi	r22, 0x40	; 64
+  ae:	89 e5       	ldi	r24, 0x59	; 89
+  b0:	92 e0       	ldi	r25, 0x02	; 2
+  b2:	0e 94 a4 00 	call	0x148	; 0x148 <_ZN12NokiaDisplay5SetXyEcc>
+	Nlcd.Image(AnimKid);
+  b6:	60 e6       	ldi	r22, 0x60	; 96
+  b8:	70 e0       	ldi	r23, 0x00	; 0
+  ba:	89 e5       	ldi	r24, 0x59	; 89
+  bc:	92 e0       	ldi	r25, 0x02	; 2
+  be:	0e 94 cc 00 	call	0x198	; 0x198 <_ZN12NokiaDisplay5ImageEPKh>
+	while(1)
+	return 0;
+}
+  c2:	80 e0       	ldi	r24, 0x00	; 0
+  c4:	90 e0       	ldi	r25, 0x00	; 0
+  c6:	08 95       	ret
+
+000000c8 <_ZN12NokiaDisplay7CommandEc>:
+			spi.Write(ASCII[DATA[g] - 0x20][index]);					/* send the data on data register */
+		}
+		spi.Write(0x00);
+	}
+	spi.SSDisable();
+}
+  c8:	1f 93       	push	r17
+  ca:	cf 93       	push	r28
+  cc:	df 93       	push	r29
+  ce:	ec 01       	movw	r28, r24
+  d0:	16 2f       	mov	r17, r22
+  d2:	c1 98       	cbi	0x18, 1	; 24
+  d4:	0e 94 f5 00 	call	0x1ea	; 0x1ea <_ZN3Spi8SSEnableEv>
+  d8:	61 2f       	mov	r22, r17
+  da:	ce 01       	movw	r24, r28
+  dc:	0e 94 01 01 	call	0x202	; 0x202 <_ZN3Spi5WriteEc>
+  e0:	c1 9a       	sbi	0x18, 1	; 24
+  e2:	ce 01       	movw	r24, r28
+  e4:	0e 94 f7 00 	call	0x1ee	; 0x1ee <_ZN3Spi9SSDisableEv>
+  e8:	df 91       	pop	r29
+  ea:	cf 91       	pop	r28
+  ec:	1f 91       	pop	r17
+  ee:	08 95       	ret
+
+000000f0 <_ZN12NokiaDisplay5ResetEv>:
+
+void NokiaDisplay::Reset()												/* reset the Display at the beginning of initialization */
+{
+	PORTB &= ~(1 << RST);
+  f0:	c0 98       	cbi	0x18, 0	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  f2:	2f ef       	ldi	r18, 0xFF	; 255
+  f4:	80 e7       	ldi	r24, 0x70	; 112
+  f6:	92 e0       	ldi	r25, 0x02	; 2
+  f8:	21 50       	subi	r18, 0x01	; 1
+  fa:	80 40       	sbci	r24, 0x00	; 0
+  fc:	90 40       	sbci	r25, 0x00	; 0
+  fe:	e1 f7       	brne	.-8      	; 0xf8 <_ZN12NokiaDisplay5ResetEv+0x8>
+ 100:	00 c0       	rjmp	.+0      	; 0x102 <_ZN12NokiaDisplay5ResetEv+0x12>
+ 102:	00 00       	nop
+	_delay_ms(100);
+	PORTB |= (1 << RST);
+ 104:	c0 9a       	sbi	0x18, 0	; 24
+ 106:	08 95       	ret
+
+00000108 <_ZN12NokiaDisplay4InitEv>:
+}
+
+void NokiaDisplay::Init()
+{
+ 108:	cf 93       	push	r28
+ 10a:	df 93       	push	r29
+ 10c:	ec 01       	movw	r28, r24
+	Reset();															/* reset the display */
+ 10e:	0e 94 78 00 	call	0xf0	; 0xf0 <_ZN12NokiaDisplay5ResetEv>
+	Command(0x21);														/* command set in addition mode */
+ 112:	61 e2       	ldi	r22, 0x21	; 33
+ 114:	ce 01       	movw	r24, r28
+ 116:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN12NokiaDisplay7CommandEc>
+	Command(0xC0);														/* set the voltage by sending C0 means VOP = 5V */
+ 11a:	60 ec       	ldi	r22, 0xC0	; 192
+ 11c:	ce 01       	movw	r24, r28
+ 11e:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN12NokiaDisplay7CommandEc>
+	Command(0x07);														/* set the temp. coefficient to 3 */
+ 122:	67 e0       	ldi	r22, 0x07	; 7
+ 124:	ce 01       	movw	r24, r28
+ 126:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN12NokiaDisplay7CommandEc>
+	Command(0x13);														/* set value of Voltage Bias System */
+ 12a:	63 e1       	ldi	r22, 0x13	; 19
+ 12c:	ce 01       	movw	r24, r28
+ 12e:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN12NokiaDisplay7CommandEc>
+	Command(0x20);														/* command set in basic mode */
+ 132:	60 e2       	ldi	r22, 0x20	; 32
+ 134:	ce 01       	movw	r24, r28
+ 136:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN12NokiaDisplay7CommandEc>
+	Command(0x0C);														/* display result in normal mode */
+ 13a:	6c e0       	ldi	r22, 0x0C	; 12
+ 13c:	ce 01       	movw	r24, r28
+ 13e:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN12NokiaDisplay7CommandEc>
+}
+ 142:	df 91       	pop	r29
+ 144:	cf 91       	pop	r28
+ 146:	08 95       	ret
+
+00000148 <_ZN12NokiaDisplay5SetXyEcc>:
+
+void NokiaDisplay::SetXy(char x, char y)								/* set the column and row */
+{
+ 148:	1f 93       	push	r17
+ 14a:	cf 93       	push	r28
+ 14c:	df 93       	push	r29
+ 14e:	ec 01       	movw	r28, r24
+ 150:	14 2f       	mov	r17, r20
+	Command(x);
+ 152:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN12NokiaDisplay7CommandEc>
+	Command(y);
+ 156:	61 2f       	mov	r22, r17
+ 158:	ce 01       	movw	r24, r28
+ 15a:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN12NokiaDisplay7CommandEc>
+}
+ 15e:	df 91       	pop	r29
+ 160:	cf 91       	pop	r28
+ 162:	1f 91       	pop	r17
+ 164:	08 95       	ret
+
+00000166 <_ZN12NokiaDisplay5ClearEv>:
+
+void NokiaDisplay::Clear()												/* clear the Display */
+{
+ 166:	0f 93       	push	r16
+ 168:	1f 93       	push	r17
+ 16a:	cf 93       	push	r28
+ 16c:	df 93       	push	r29
+ 16e:	8c 01       	movw	r16, r24
+	spi.SSEnable();
+ 170:	0e 94 f5 00 	call	0x1ea	; 0x1ea <_ZN3Spi8SSEnableEv>
+	PORTB |= (1 << DC);
+ 174:	c1 9a       	sbi	0x18, 1	; 24
+ 176:	c8 ef       	ldi	r28, 0xF8	; 248
+ 178:	d1 e0       	ldi	r29, 0x01	; 1
+	for (uint16_t k = 0; k <= 503; k++)
+	{
+		spi.Write(0x00);
+ 17a:	60 e0       	ldi	r22, 0x00	; 0
+ 17c:	c8 01       	movw	r24, r16
+ 17e:	0e 94 01 01 	call	0x202	; 0x202 <_ZN3Spi5WriteEc>
+ 182:	21 97       	sbiw	r28, 0x01	; 1
+
+void NokiaDisplay::Clear()												/* clear the Display */
+{
+	spi.SSEnable();
+	PORTB |= (1 << DC);
+	for (uint16_t k = 0; k <= 503; k++)
+ 184:	d1 f7       	brne	.-12     	; 0x17a <_ZN12NokiaDisplay5ClearEv+0x14>
+	{
+		spi.Write(0x00);
+	}
+	PORTB &= ~(1 << DC);
+ 186:	c1 98       	cbi	0x18, 1	; 24
+	spi.SSDisable();
+ 188:	c8 01       	movw	r24, r16
+ 18a:	0e 94 f7 00 	call	0x1ee	; 0x1ee <_ZN3Spi9SSDisableEv>
+}
+ 18e:	df 91       	pop	r29
+ 190:	cf 91       	pop	r28
+ 192:	1f 91       	pop	r17
+ 194:	0f 91       	pop	r16
+ 196:	08 95       	ret
+
+00000198 <_ZN12NokiaDisplay5ImageEPKh>:
+
+void NokiaDisplay::Image(const unsigned char *image_data)				/* clear the Display */
+{
+ 198:	cf 92       	push	r12
+ 19a:	df 92       	push	r13
+ 19c:	ef 92       	push	r14
+ 19e:	ff 92       	push	r15
+ 1a0:	0f 93       	push	r16
+ 1a2:	1f 93       	push	r17
+ 1a4:	cf 93       	push	r28
+ 1a6:	df 93       	push	r29
+ 1a8:	c8 2e       	mov	r12, r24
+ 1aa:	d9 2e       	mov	r13, r25
+ 1ac:	8b 01       	movw	r16, r22
+	spi.SSEnable();
+ 1ae:	e8 2e       	mov	r14, r24
+ 1b0:	f9 2e       	mov	r15, r25
+ 1b2:	0e 94 f5 00 	call	0x1ea	; 0x1ea <_ZN3Spi8SSEnableEv>
+	PORTB |= (1 << DC);
+ 1b6:	c1 9a       	sbi	0x18, 1	; 24
+ 1b8:	e8 01       	movw	r28, r16
+ 1ba:	08 50       	subi	r16, 0x08	; 8
+ 1bc:	1e 4f       	sbci	r17, 0xFE	; 254
+	for (uint16_t k = 0; k <= 503; k++)
+	{
+		spi.Write(image_data[k]);
+ 1be:	69 91       	ld	r22, Y+
+ 1c0:	8e 2d       	mov	r24, r14
+ 1c2:	9f 2d       	mov	r25, r15
+ 1c4:	0e 94 01 01 	call	0x202	; 0x202 <_ZN3Spi5WriteEc>
+
+void NokiaDisplay::Image(const unsigned char *image_data)				/* clear the Display */
+{
+	spi.SSEnable();
+	PORTB |= (1 << DC);
+	for (uint16_t k = 0; k <= 503; k++)
+ 1c8:	c0 17       	cp	r28, r16
+ 1ca:	d1 07       	cpc	r29, r17
+ 1cc:	c1 f7       	brne	.-16     	; 0x1be <_ZN12NokiaDisplay5ImageEPKh+0x26>
+	{
+		spi.Write(image_data[k]);
+	}
+	PORTB &= ~(1 << DC);
+ 1ce:	c1 98       	cbi	0x18, 1	; 24
+	spi.SSDisable();
+ 1d0:	8c 2d       	mov	r24, r12
+ 1d2:	9d 2d       	mov	r25, r13
+ 1d4:	0e 94 f7 00 	call	0x1ee	; 0x1ee <_ZN3Spi9SSDisableEv>
+ 1d8:	df 91       	pop	r29
+ 1da:	cf 91       	pop	r28
+ 1dc:	1f 91       	pop	r17
+ 1de:	0f 91       	pop	r16
+ 1e0:	ff 90       	pop	r15
+ 1e2:	ef 90       	pop	r14
+ 1e4:	df 90       	pop	r13
+ 1e6:	cf 90       	pop	r12
+ 1e8:	08 95       	ret
+
+000001ea <_ZN3Spi8SSEnableEv>:
+ #include "SPI.h"
+ 
+ 
+void Spi::SSEnable(void)
+{
+	PORTB &= ~(1 << SS);
+ 1ea:	c4 98       	cbi	0x18, 4	; 24
+ 1ec:	08 95       	ret
+
+000001ee <_ZN3Spi9SSDisableEv>:
+}
+
+void Spi::SSDisable(void)
+{
+	PORTB |= (1 << SS);
+ 1ee:	c4 9a       	sbi	0x18, 4	; 24
+ 1f0:	08 95       	ret
+
+000001f2 <_ZN3Spi10MasterInitEv>:
+}
+
+ void Spi::MasterInit(void)
+ {
+	 DDRB = (1 << SCK)|(1 << MOSI)|(1 << SS)|(1 << RST)|(1 << DC);
+ 1f2:	83 eb       	ldi	r24, 0xB3	; 179
+ 1f4:	87 bb       	out	0x17, r24	; 23
+	 PORTB |= (1 << RST);		
+ 1f6:	c0 9a       	sbi	0x18, 0	; 24
+	 DDRB &= ~(1 << MISO);
+ 1f8:	be 98       	cbi	0x17, 6	; 23
+	 PORTB |= (1 << SS);
+ 1fa:	c4 9a       	sbi	0x18, 4	; 24
+	 SPCR = (1 << SPE)|(1 << MSTR)|(1 << SPR0);
+ 1fc:	81 e5       	ldi	r24, 0x51	; 81
+ 1fe:	8d b9       	out	0x0d, r24	; 13
+ 200:	08 95       	ret
+
+00000202 <_ZN3Spi5WriteEc>:
+ }
+ 
+ void Spi::Write(char data)
+ {
+	 char flushBuffer;
+	 SPDR = data;
+ 202:	6f b9       	out	0x0f, r22	; 15
+	 while(!(SPSR & (1 << SPIF)));
+ 204:	77 9b       	sbis	0x0e, 7	; 14
+ 206:	fe cf       	rjmp	.-4      	; 0x204 <_ZN3Spi5WriteEc+0x2>
+	 flushBuffer = SPDR;
+ 208:	8f b1       	in	r24, 0x0f	; 15
+ 20a:	08 95       	ret
+
+0000020c <_exit>:
+ 20c:	f8 94       	cli
+
+0000020e <__stop_program>:
+ 20e:	ff cf       	rjmp	.-2      	; 0x20e <__stop_program>
